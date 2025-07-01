@@ -1,70 +1,73 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.5.0/math.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.5.0/math.min.js"></script>
 </head>
+
 <body class="bg-gray-300 flex items-center justify-center min-h-screen">
     <div class="bg-white p-6 rounded-xl shadow-md ">
-        <input type="text" id="display" disabled class="w-full text-right mb-4 p-3 text-2xl border rounded-xl "/>
+        <input type="text" id="display" disabled class="w-full text-right mb-4 p-3 text-2xl border rounded-xl " />
         <!--buttons-->
         <div class="grid grid-cols-4 gap-3">
-        <button class="btn">7</button>
-        <button class="btn">8</button>
-        <button class="btn">9</button>
-        <button class="btn bg-orange-400 text-white">/</button>
-         
-        <button class="btn">4</button>
-        <button class="btn">5</button>
-        <button class="btn">6</button>
-        <button class="btn bg-orange-400 text-white">*</button>
+            <button class="btn">7</button>
+            <button class="btn">8</button>
+            <button class="btn">9</button>
+            <button class="btn bg-orange-400 text-white">/</button>
 
-        <button class="btn">1</button>
-        <button class="btn">2</button>
-        <button class="btn">3</button>
-        <button class="btn bg-orange-400 text-white">-</button>
-        
-    
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+            <button class="btn">6</button>
+            <button class="btn bg-orange-400 text-white">*</button>
 
-        <button class="btn">0</button>
-        <button class="btn">.</button>
-        <button class="btn">←</button>
-        <button class="btn bg-orange-400 text-white">+</button>
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn bg-orange-400 text-white">-</button>
 
-        <button class="btn col-span-2">C</button>
-        <button class="btn bg-red-500 col-span-2">=</button>
-        
-        
-       
-        </div> 
+
+
+            <button class="btn">0</button>
+            <button class="btn">.</button>
+            <button class="btn">←</button>
+            <button class="btn bg-orange-400 text-white">+</button>
+
+            <button class="btn col-span-2">C</button>
+            <button class="btn bg-red-500 col-span-2">=</button>
+
+
+
+        </div>
     </div>
- <script>
-    const display= document.getElementById("display");
-    const buttons= document.querySelectorAll("button");
-    //loop through all buttons
-    buttons.forEach(button=>{
-        button.addEventListener("click",()=>{
-            const value= button.textContent;
-            if(value ==="="){
-                try{
-                    display.value= math.evaluate(display.value);
+    <script>
+        const display = document.getElementById("display");
+        const buttons = document.querySelectorAll("button");
+        //loop through all buttons
+        buttons.forEach(button => {
+            button.addEventListener("click", () => {
+                const value = button.textContent;
+                if (value === "=") {
+                    try {
+                        display.value = math.evaluate(display.value);
+                    }
+                    catch {
+                        display.value = "Error";
+                    }
+                } else if (value === "C") {
+                    display.value = "";
+                } else if (value === "←") {
+                    display.value = display.value.slice(0, -1);
                 }
-                catch{
-                    display.value="Error";
+                else {
+                    display.value += value;
                 }
-            }else if(value==="C"){
-                display.value="";
-            }else if(value==="←"){
-                display.value=display.value.slice(0,-1);
-            }
-            else{
-                display.value +=value;
-            }
+            });
         });
-    });
- </script>
-    
+    </script>
+
 </body>
+
 </html>
